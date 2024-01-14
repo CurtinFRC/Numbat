@@ -48,4 +48,4 @@ class NTLogger : public Logger {
 class JsonLogger : public Logger {};
 
 class WPILogger : public Logger {};
-}  // namespace primitives
+}  // namespace loggers
