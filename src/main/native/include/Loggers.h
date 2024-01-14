@@ -33,16 +33,12 @@ class NTLogger : public Logger {
   void OnLogTick();
 
   std::string GetName();
-  std::string GetPath();
   std::vector<NT_Table> GetTables();
 
  private:
-  std::vector<std::thread*> GetThreads();
-
   std::string name;
-  std::string path;
   std::vector<NT_Table> tables;
-  std::vector<std::thread*> threads = {};
+  std::vector<std::thread*> threads;
 };
 
 class JsonLogger : public Logger {};

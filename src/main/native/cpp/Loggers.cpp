@@ -10,7 +10,7 @@ using namespace loggers;
 
 NTLogger::NTLogger(std::string name, std::string path,
                    std::vector<NT_Table> tables)
-    : name(name), path(path), tables(tables) {}
+    : name(name), tables(tables) {}
 
 NTLogger::~NTLogger() {
   for (std::thread* thread : this->threads) {
@@ -22,16 +22,8 @@ std::string NTLogger::GetName() {
   return this->name;
 }
 
-std::string NTLogger::GetPath() {
-  return this->name;
-}
-
 std::vector<NT_Table> NTLogger::GetTables() {
   return this->tables;
-}
-
-std::vector<std::thread*> NTLogger::GetThreads() {
-  return this->threads;
 }
 
 void NTLogger::OnLogTick() {
