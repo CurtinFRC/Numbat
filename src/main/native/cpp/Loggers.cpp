@@ -41,6 +41,6 @@ void NTLogger::OnLogTick() {
         table->first.GetEntry(key).SetDefaultValue((table->second));
       }
     });
-    threads.emplace_back(&thread);
+    threads.push_back(&thread);
   }
 }
