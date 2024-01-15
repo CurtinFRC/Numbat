@@ -10,7 +10,6 @@
 #include "utils/RobotStartup.h"
 
 namespace numbat {
-using namespace numbat::utils;
-using namespace numbat::robot;
+using namespace robot;
 using namespace loggers;
 }  // namespace numbat

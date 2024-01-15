@@ -10,7 +10,6 @@
 #include <iostream>
 #include <string>
 
-namespace numbat {
 namespace utils {
 class LogFile {
  public:
@@ -27,4 +26,3 @@ class LogFile {
   std::ofstream _file;
 };
 }  // namespace utils
-}  // namespace numbat

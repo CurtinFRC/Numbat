@@ -8,8 +8,7 @@
 #include <functional>
 #include <iostream>
 
-namespace numbat {
-namespace utils {
+namespace robot {
 
 class RobotStartup {
  public:
@@ -30,5 +29,4 @@ int StartRobot() {
 #else
 #define NUMBAT_ROBOT_MAIN(RobotClz)
 #endif  // NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_
-}  // namespace utils
-}  // namespace numbat
+}  // namespace robot

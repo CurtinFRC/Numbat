@@ -17,7 +17,6 @@
 #include "Loggers.h"
 #include "utils/FileLogger.h"
 
-namespace numbat {
 namespace robot {
 class NumbatRobot {
  public:
@@ -35,11 +34,10 @@ class NumbatRobot {
 
   frc::TimedRobot* _robot;
   std::vector<loggers::Logger*> _loggers;
-  numbat::utils::LogFile _logFile;
+  utils::LogFile _logFile;
   frc::Timer _timer;
 
   frc::Pose2d _position;
 };
 
 }  // namespace robot
-}  // namespace numbat
