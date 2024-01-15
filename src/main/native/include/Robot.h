@@ -6,6 +6,7 @@
 #include <networktables/NetworkTable.h>
 
 #include "utils/FileLogger.h"
+#include "Loggers.h"
 
 #include <functional>
 #include <iostream>
@@ -15,12 +16,12 @@ namespace numbat {
 namespace robot {
 class NumbatRobot {
     public:
-        NumbatRobot(frc::TimedRobot *robot, std::vector<Logger*> loggers);
+        NumbatRobot(frc::TimedRobot *robot, std::vector<loggers::Logger*> loggers);
         NumbatRobot(frc::TimedRobot *robot);
         NumbatRobot();
 
         void Log();
-        void AddLogger(Logger *logger);
+        void AddLogger(loggers::Logger *logger);
         void SetPosition(frc::Pose2d position);
 
     private:
@@ -28,7 +29,7 @@ class NumbatRobot {
         void INIT_TIMER();
 
         frc::TimedRobot *_robot;
-        std::vector<Logger*> _loggers;
+        std::vector<loggers::Logger*> _loggers;
         numbat::utils::LogFile _logFile;
         frc::Timer _timer;
 
