@@ -24,7 +24,7 @@ int StartRobot() {
 #ifndef NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_
 #define NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_(RobotClz) \
   int main() {                                                         \
-    wom::utils::StartRobot<RobotClz>();                                \
+    numbat::StartRobot<RobotClz>();                                    \
   }
 #else
 #define NUMBAT_ROBOT_MAIN(RobotClz)
