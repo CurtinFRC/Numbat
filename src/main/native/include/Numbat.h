@@ -5,12 +5,12 @@
 #pragma once
 
 #include "Loggers.h"
+#include "Robot.h"
 #include "utils/FileLogger.h"
 #include "utils/RobotStartup.h"
-#include "Robot.h"
 
 namespace numbat {
-    using namespace numbat::utils;
-    using namespace numbat::robot;
-    using namespace loggers;
+using namespace numbat::utils;
+using namespace numbat::robot;
+using namespace loggers;
 }  // namespace numbat

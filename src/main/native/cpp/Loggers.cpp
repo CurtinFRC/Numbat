@@ -50,8 +50,8 @@ void NTLogger::OnLogTick() {
 
 DigitalLogger::DigitalLogger(std::string name, std::string path, int channel)
     : name(name), path(path), channel(channel) {
-      _input = new frc::DigitalInput(channel);
-    }
+  _input = new frc::DigitalInput(channel);
+}
 
 void DigitalLogger::OnLogTick() {
   auto value = _input->Get();
@@ -71,7 +71,7 @@ std::string VariableLogger::GetName() {
   return this->name;
 }
 
-DoubleLogger::DoubleLogger(std::string name, std::string path, double *variable)
+DoubleLogger::DoubleLogger(std::string name, std::string path, double* variable)
     : name(name), path(path), variable(variable) {}
 
 void DoubleLogger::OnLogTick() {
@@ -84,7 +84,8 @@ std::string DoubleLogger::GetName() {
   return this->name;
 }
 
-EncoderLogger::EncoderLogger(std::string name, std::string path, frc::Encoder *encoder)
+EncoderLogger::EncoderLogger(std::string name, std::string path,
+                             frc::Encoder* encoder)
     : name(name), path(path), encoder(encoder) {}
 
 void EncoderLogger::OnLogTick() {
@@ -97,7 +98,8 @@ std::string EncoderLogger::GetName() {
   return this->name;
 }
 
-JoystickLogger::JoystickLogger(std::string name, std::string path, frc::Joystick *joystick)
+JoystickLogger::JoystickLogger(std::string name, std::string path,
+                               frc::Joystick* joystick)
     : name(name), path(path), joystick(joystick) {}
 
 void JoystickLogger::OnLogTick() {
@@ -110,7 +112,8 @@ std::string JoystickLogger::GetName() {
   return this->name;
 }
 
-XboxControllerLogger::XboxControllerLogger(std::string name, std::string path, frc::XboxController *controller)
+XboxControllerLogger::XboxControllerLogger(std::string name, std::string path,
+                                           frc::XboxController* controller)
     : name(name), path(path), controller(controller) {}
 
 void XboxControllerLogger::OnLogTick() {
@@ -123,10 +126,12 @@ std::string XboxControllerLogger::GetName() {
   return this->name;
 }
 
-LimelightLogger::LimelightLogger(std::string name, std::string path, NT_Table table)
+LimelightLogger::LimelightLogger(std::string name, std::string path,
+                                 NT_Table table)
     : name(name), path(path), table(table), key("tv") {}
 
-LimelightLogger::LimelightLogger(std::string name, std::string path, NT_Table table, std::string key)
+LimelightLogger::LimelightLogger(std::string name, std::string path,
+                                 NT_Table table, std::string key)
     : name(name), path(path), table(table), key(key) {}
 
 void LimelightLogger::OnLogTick() {

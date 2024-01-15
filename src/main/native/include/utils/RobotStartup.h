@@ -1,3 +1,7 @@
+// Copyright (c) 2023-2024 CurtinFRC
+// Open Source Software, you can modify it according to the terms
+// of the MIT License at the root of this project
+
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 
@@ -7,24 +11,24 @@
 namespace numbat {
 namespace utils {
 
-  class RobotStartup {
-   public:
-    static void Start(std::function<int()> func);
-  };
+class RobotStartup {
+ public:
+  static void Start(std::function<int()> func);
+};
 
-  template <class RobotClass>
-  int StartRobot() {
-    RobotStartup::Start(frc::StartRobot<RobotClass>);
-    return 0;
-  }
+template <class RobotClass>
+int StartRobot() {
+  RobotStartup::Start(frc::StartRobot<RobotClass>);
+  return 0;
+}
 
-#ifndef RUNNING_FRC_TESTS
-#define NUMBAT_ROBOT_MAIN(RobotClz)     \
-  int main() {                          \
-    wom::utils::StartRobot<RobotClz>(); \
+#ifndef NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_
+#define NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_(RobotClz) \
+  int main() {                                                         \
+    wom::utils::StartRobot<RobotClz>();                                \
   }
 #else
 #define NUMBAT_ROBOT_MAIN(RobotClz)
-#endif
-}
-}
+#endif  // NUMBAT_SRC_MAIN_NATIVE_INCLUDE_UTILS_ROBOTSTARTUP_H_
+}  // namespace utils
+}  // namespace numbat
