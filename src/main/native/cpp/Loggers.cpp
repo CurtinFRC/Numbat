@@ -135,3 +135,6 @@ void LimelightLogger::OnLogTick() {
   std::cout << value << std::endl;
 }
 
+std::string LimelightLogger::GetName() {
+  return this->name;
+}
