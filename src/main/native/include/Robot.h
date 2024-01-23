@@ -20,6 +20,10 @@
 namespace robot {
 class NumbatRobot {
  public:
+  NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers,
+              loggers::LimelightLogger* limelightLogger);
+  NumbatRobot(frc::TimedRobot* robot,
+              loggers::LimelightLogger* limelightLogger);
   NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers);
   explicit NumbatRobot(frc::TimedRobot* robot);
   NumbatRobot();
@@ -27,6 +31,7 @@ class NumbatRobot {
   void Log();
   void AddLogger(loggers::Logger* logger);
   void SetPosition(frc::Pose2d position);
+  void SetLimelight(loggers::LimelightLogger* limelight);
 
  private:
   void INIT_FILE();
@@ -38,6 +43,7 @@ class NumbatRobot {
   frc::Timer _timer;
 
   frc::Pose2d _position;
+  loggers::LimelightLogger* _limelight;
 };
 
 }  // namespace robot
