@@ -38,9 +38,9 @@ class NTLogger : public Logger {
 
   ~NTLogger();
 
-  virtual std::vector<std::pair<std::string, double>> OnLogTick() override;
+  virtual std::vector<std::pair<std::string, double>> OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
   std::vector<NT_Table> GetTables();
 
  private:
@@ -59,7 +59,7 @@ class DigitalLogger : public Logger {
 
   std::vector<std::pair<std::string, double>> OnLogTick() override;
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
@@ -71,9 +71,9 @@ class DigitalLogger : public Logger {
 
 class VariableLogger : public Logger {
  public:
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
@@ -86,7 +86,7 @@ class DoubleLogger : public VariableLogger {
  public:
   DoubleLogger(std::string name, std::string path, double* variable);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -100,7 +100,7 @@ class IntLogger : public VariableLogger {
  public:
   IntLogger(std::string name, std::string path, int* variable);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -114,7 +114,7 @@ class BoolLogger : public VariableLogger {
  public:
   BoolLogger(std::string name, std::string path, bool* variable);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -128,9 +128,9 @@ class EncoderLogger : public Logger {
  public:
   EncoderLogger(std::string name, std::string path, frc::Encoder* encoder);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
@@ -142,9 +142,9 @@ class JoystickLogger : public Logger {
  public:
   JoystickLogger(std::string name, std::string path, frc::Joystick* joystick);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
@@ -157,9 +157,9 @@ class XboxControllerLogger : public Logger {
   XboxControllerLogger(std::string name, std::string path,
                        frc::XboxController* controller);
 
-  std::vector<std::pair<std::string, double>> OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
@@ -174,9 +174,9 @@ class LimelightLogger {
 
   std::pair<std::vector<std::pair<std::string, double>>,
             std::vector<std::pair<std::string, std::vector<double>>>>
-  OnLogTick() override;
+  OnLogTick();
 
-  std::string GetName() override;
+  std::string GetName();
 
  private:
   std::string name;
