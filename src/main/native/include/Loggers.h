@@ -19,11 +19,14 @@
 #include <vector>
 
 namespace loggers {
+
 using NT_Table = std::shared_ptr<std::pair<nt::NetworkTable, nt::Value>>;
 
 class Logger {
  public:
-  virtual void OnLogTick() = 0;
+  // make the OnLogTick() return multiple types
+  virtual std::vector<std::pair<std::string, double>> OnLogTick() = 0;
+
   virtual std::string GetName() = 0;
 
  private:
@@ -35,7 +38,7 @@ class NTLogger : public Logger {
 
   ~NTLogger();
 
-  void OnLogTick();
+  virtual std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName();
   std::vector<NT_Table> GetTables();
@@ -54,7 +57,7 @@ class DigitalLogger : public Logger {
  public:
   DigitalLogger(std::string name, std::string path, int channel);
 
-  void OnLogTick();
+  std::vector<std::pair<std::string, double>> OnLogTick() override;
 
   std::string GetName();
 
@@ -68,7 +71,7 @@ class DigitalLogger : public Logger {
 
 class VariableLogger : public Logger {
  public:
-  void OnLogTick();
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName();
 
@@ -83,7 +86,7 @@ class DoubleLogger : public VariableLogger {
  public:
   DoubleLogger(std::string name, std::string path, double* variable);
 
-  void OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -97,7 +100,7 @@ class IntLogger : public VariableLogger {
  public:
   IntLogger(std::string name, std::string path, int* variable);
 
-  void OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -111,7 +114,7 @@ class BoolLogger : public VariableLogger {
  public:
   BoolLogger(std::string name, std::string path, bool* variable);
 
-  void OnLogTick() override;
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName() override;
 
@@ -121,25 +124,11 @@ class BoolLogger : public VariableLogger {
   bool* variable;
 };
 
-class StringLogger : public VariableLogger {
- public:
-  StringLogger(std::string name, std::string path, std::string* variable);
-
-  void OnLogTick() override;
-
-  std::string GetName() override;
-
- private:
-  std::string name;
-  std::string path;
-  std::string* variable;
-};
-
 class EncoderLogger : public Logger {
  public:
   EncoderLogger(std::string name, std::string path, frc::Encoder* encoder);
 
-  void OnLogTick();
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName();
 
@@ -153,7 +142,7 @@ class JoystickLogger : public Logger {
  public:
   JoystickLogger(std::string name, std::string path, frc::Joystick* joystick);
 
-  void OnLogTick();
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName();
 
@@ -168,7 +157,7 @@ class XboxControllerLogger : public Logger {
   XboxControllerLogger(std::string name, std::string path,
                        frc::XboxController* controller);
 
-  void OnLogTick();
+  std::vector<std::pair<std::string, double>> OnLogTick();
 
   std::string GetName();
 
@@ -178,20 +167,21 @@ class XboxControllerLogger : public Logger {
   frc::XboxController* controller;
 };
 
-class LimelightLogger : public Logger {
+class LimelightLogger {
  public:
-  LimelightLogger(std::string name, std::string path, NT_Table table);
-  LimelightLogger(std::string name, std::string path, NT_Table table,
-                  std::string key);
+  LimelightLogger(std::string name, std::string path,
+                  std::shared_ptr<nt::NetworkTable> table);
 
-  void OnLogTick();
+  std::pair<std::vector<std::pair<std::string, double>>,
+            std::vector<std::pair<std::string, std::vector<double>>>>
+  OnLogTick();
 
   std::string GetName();
 
  private:
   std::string name;
   std::string path;
-  NT_Table table;
+  std::shared_ptr<nt::NetworkTable> table;
   std::string key;
 };
 }  // namespace loggers
