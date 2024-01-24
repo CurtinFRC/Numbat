@@ -40,14 +40,14 @@ jobs:
         find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
         rm -rf .github .gradle .wpilib build gradle src
 
-    - name: Stage changes
-      run: |
-        git add .
-
     - name: Make git work
       run: |
         git init
         "git remote add origin ${{ github.repository }}"
+        
+    - name: Stage changes
+      run: |
+        git add .
 
     - name: Commit changes
       run: |
