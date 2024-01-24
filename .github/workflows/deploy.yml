@@ -24,8 +24,9 @@ jobs:
       run: |
         mkdir -p "maven/releases/${{ steps.branch.outputs.branch }}"
         mv build/repos/releases/* "maven/releases/${{ steps.branch.outputs.branch }}"
-        find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
+        find . -type f ! -name 'maven' ! -name '.git' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
         rm -rf .github .gradle .wpilib build gradle src
+        ls -a
 
     - name: Commit and push Maven artifacts
       run: |
