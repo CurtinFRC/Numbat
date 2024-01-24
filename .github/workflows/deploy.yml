@@ -1,18 +1,16 @@
 name: Publish to Maven
-
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Initialize Git repository
-      run: |
-        git init
-        git remote add origin https://github.com/${{ github.repository }}.git
-        git fetch
-        git checkout --force ${{ github.sha }}
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Set up Java
       uses: actions/setup-java@v2
@@ -20,34 +18,21 @@ jobs:
         distribution: 'zulu'
         java-version: 17
 
-    - name: Get commit SHA
-      id: commit
-      run: echo "::set-output name=sha::${{ github.event.after }}"
-
-    - name: Set Git configurations
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@users.noreply.github.com"
-
     - name: Publish to Maven
       run: |
         ./gradlew publish
 
     - name: Restructure project
       run: |
-        mkdir -p "maven/releases"
-        mv build/repos/releases/* "maven/releases/"
+        mkdir -p maven/releases
+        mv build/repos/releases/* maven/releases/
         find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
         rm -rf .github .gradle .wpilib build gradle src
 
-    - name: Stage changes
+    - name: Commit and push Maven artifacts
       run: |
-        git add .
-
-    - name: Commit changes
-      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@users.noreply.github.com"
+        git add -f .
         git commit -m "Publish Maven artifacts"
-
-    - name: Push changes
-      run: |
-        git push origin HEAD:refs/heads/maven
+        "git push origin HEAD:refs/heads/maven-${{ github.sha }}"
