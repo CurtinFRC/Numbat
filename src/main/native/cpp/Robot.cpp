@@ -6,23 +6,20 @@
 
 #include <iostream>
 
-robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot,
-                                std::vector<loggers::Logger*> loggers,
+robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers,
                                 loggers::LimelightLogger* limelightLogger)
     : _robot(robot), _loggers(loggers), _limelight(limelightLogger) {
   INIT_FILE();
   INIT_TIMER();
 }
 
-robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot,
-                                loggers::LimelightLogger* limelightLogger)
+robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot, loggers::LimelightLogger* limelightLogger)
     : _robot(robot), _limelight(limelightLogger) {
   INIT_FILE();
   INIT_TIMER();
 }
 
-robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot,
-                                std::vector<loggers::Logger*> loggers)
+robot::NumbatRobot::NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers)
     : _robot(robot), _loggers(loggers), _limelight(nullptr) {
   INIT_FILE();
   INIT_TIMER();
@@ -51,8 +48,7 @@ void robot::NumbatRobot::Log() {
   }
 
   if (_limelight != nullptr) {
-    _logFile._data["limelight"][_limelight->GetName()][_timer.Get().value()] =
-        _limelight->OnLogTick();
+    _logFile._data["limelight"][_limelight->GetName()][_timer.Get().value()] = _limelight->OnLogTick();
   }
 
   // _logFile.Write();

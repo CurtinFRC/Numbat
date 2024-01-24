@@ -154,8 +154,7 @@ class JoystickLogger : public Logger {
 
 class XboxControllerLogger : public Logger {
  public:
-  XboxControllerLogger(std::string name, std::string path,
-                       frc::XboxController* controller);
+  XboxControllerLogger(std::string name, std::string path, frc::XboxController* controller);
 
   std::vector<std::pair<std::string, double>> OnLogTick();
 
@@ -169,8 +168,7 @@ class XboxControllerLogger : public Logger {
 
 class LimelightLogger {
  public:
-  LimelightLogger(std::string name, std::string path,
-                  std::shared_ptr<nt::NetworkTable> table);
+  LimelightLogger(std::string name, std::string path, std::shared_ptr<nt::NetworkTable> table);
 
   std::pair<std::vector<std::pair<std::string, double>>,
             std::vector<std::pair<std::string, std::vector<double>>>>
