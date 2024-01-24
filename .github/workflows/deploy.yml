@@ -7,8 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Initialize Git repository
+      run: |
+        git init
+        git remote add origin https://github.com/${{ github.repository }}.git
+        git fetch
+        git checkout --force ${{ github.sha }}
 
     - name: Set up Java
       uses: actions/setup-java@v2
@@ -24,7 +28,6 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@users.noreply.github.com"
-        git remote set-url origin "https://github.com/${{ github.repository }}.git"
 
     - name: Publish to Maven
       run: |
