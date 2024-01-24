@@ -6,7 +6,10 @@
 
 #include "LoggerSingleton.h"
 #include "Loggers.h"
+#include "Robot.h"
+#include "utils/FileLogger.h"
 
 namespace numbat {
+using namespace robot;
 using namespace loggers;
 }  // namespace numbat
