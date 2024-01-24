@@ -22,8 +22,7 @@ class NumbatRobot {
  public:
   NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers,
               loggers::LimelightLogger* limelightLogger);
-  NumbatRobot(frc::TimedRobot* robot,
-              loggers::LimelightLogger* limelightLogger);
+  NumbatRobot(frc::TimedRobot* robot, loggers::LimelightLogger* limelightLogger);
   NumbatRobot(frc::TimedRobot* robot, std::vector<loggers::Logger*> loggers);
   explicit NumbatRobot(frc::TimedRobot* robot);
   NumbatRobot();
