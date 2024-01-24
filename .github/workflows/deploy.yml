@@ -18,9 +18,9 @@ jobs:
 
     - name: Publish to Maven
       run: |
-      git status
-      pwd
-      ls -la
+        git status
+        pwd
+        ls -la
         ./gradlew publish
 
     - name: Restructure project
