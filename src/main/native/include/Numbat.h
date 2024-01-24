@@ -7,7 +7,6 @@
 #include "Loggers.h"
 #include "Robot.h"
 #include "utils/FileLogger.h"
-#include "utils/RobotStartup.h"
 
 namespace numbat {
 using namespace robot;
