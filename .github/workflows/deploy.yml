@@ -1,6 +1,9 @@
 name: Publish to Maven
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   publish:
@@ -9,6 +12,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Debug
+      run: |
+        pwd
+        ls -la
+        git status
 
     - name: Set up Java
       uses: actions/setup-java@v2
@@ -22,16 +31,13 @@ jobs:
 
     - name: Restructure project
       run: |
-        mkdir -p "maven/releases/${{ steps.branch.outputs.branch }}"
-        mv build/repos/releases/* "maven/releases/${{ steps.branch.outputs.branch }}"
-        find . -type f ! -name 'maven' ! -name '.git' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
+        mkdir -p "maven/releases/${{ github.event.after }}"
+        mv build/repos/releases/* "maven/releases/${{ github.event.after }}"
+        find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
         rm -rf .github .gradle .wpilib build gradle src
-        ls -a
 
     - name: Commit and push Maven artifacts
       run: |
-        ls -a
-        git config --global --add safe.directory $(realpath .)
         git config user.name "GitHub Actions"
         git config user.email "actions@users.noreply.github.com"
         git add -f .
