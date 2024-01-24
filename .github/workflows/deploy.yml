@@ -43,8 +43,8 @@ jobs:
     - name: Make git work
       run: |
         git init
-        "git remote add origin ${{ github.repository }}"
-        
+        "git remote add origin https://github.com/${{ github.repository }}.git"
+
     - name: Stage changes
       run: |
         git add .
