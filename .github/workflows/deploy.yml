@@ -1,5 +1,5 @@
 name: Publish to Maven
-on:] [push]
+on: [push]
 
 jobs:
   publish:
