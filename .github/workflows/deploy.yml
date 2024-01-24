@@ -30,6 +30,7 @@ jobs:
 
     - name: Commit and push Maven artifacts
       run: |
+        ls -a
         git config --global --add safe.directory $(realpath .)
         git config user.name "GitHub Actions"
         git config user.email "actions@users.noreply.github.com"
