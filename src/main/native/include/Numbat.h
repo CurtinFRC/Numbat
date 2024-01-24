@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "LoggerSingleton.h"
 #include "Loggers.h"
 #include "Robot.h"
 #include "utils/FileLogger.h"
