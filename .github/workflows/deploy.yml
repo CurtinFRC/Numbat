@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -25,16 +25,11 @@ jobs:
 
     - name: Restructure project
       run: |
-        mkdir maven\releases  
-        Move-Item -Path build\repos\releases\* -Destination maven\releases\
-        Get-ChildItem -Path . -File | Where-Object { $_.Name -notin @('maven', 'Numbat.json', '.gitignore') } | ForEach-Object { Remove-Item $_.FullName -Force }
-        Remove-Item .github -Recurse -Force
-        Remove-Item .gradle -Recurse -Force
-        Remove-Item .wpilib -Recurse -Force
-        Remove-Item build -Recurse -Force
-        Remove-Item gradle -Recurse -Force
-        Remove-Item src -Recurse -Force
-  
+        mkdir -p maven/releases
+        mv build/repos/releases/* maven/releases/
+        find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
+        rm -rf .github .gradle .wpilib build gradle src
+
     - name: Commit and push Maven artifacts
       run: |
         git config user.name "GitHub Actions"
