@@ -1,9 +1,6 @@
 name: Publish to Maven
 
-on:
-  push:
-    branches:
-      - master
+on: [ push ]
 
 jobs:
   publish:
