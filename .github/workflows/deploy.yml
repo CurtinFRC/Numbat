@@ -44,6 +44,11 @@ jobs:
       run: |
         git add .
 
+    - name: Make git work
+      run: |
+        git init
+        "git remote add origin ${{ github.repository }}"
+
     - name: Commit changes
       run: |
         git commit -m "Publish Maven artifacts"
