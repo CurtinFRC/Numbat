@@ -35,15 +35,10 @@ jobs:
 
     - name: Restructure project
       run: |
-        mkdir -p "maven/releases/${{ steps.commit.outputs.sha }}"
-        mv build/repos/releases/* "maven/releases/${{ steps.commit.outputs.sha }}"
+        mkdir -p "maven/releases"
+        mv build/repos/releases/* "maven/releases/"
         find . -type f ! -name 'maven' ! -name 'Numbat.json' ! -name '.gitignore' -exec rm -f {} +
         rm -rf .github .gradle .wpilib build gradle src
-
-    - name: Make git work
-      run: |
-        git init
-        "git remote add origin https://github.com/${{ github.repository }}.git"
 
     - name: Stage changes
       run: |
